@@ -3,7 +3,7 @@ package model;
 import model.constant.ParkingGateType;
 
 public class ParkingGate {
-    private int id;
+    private long id;
     private String gateName;
     private ParkingGateType parkingGateType;
     private ParkingAttendant parkingAttendant;
@@ -12,7 +12,7 @@ public class ParkingGate {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 

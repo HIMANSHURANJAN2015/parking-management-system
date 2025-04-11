@@ -6,20 +6,20 @@ import model.ParkingSpot;
 import java.util.HashMap;
 //TODO : make all repositories singleton -> repository or DAO[Data Access Object] are the same thing
 public class ParkingSpotRepository {
-    private HashMap<Integer, ParkingSpot> parkingSpotMap;
-    private static int counter = 1;
+    private HashMap<Long, ParkingSpot> parkingSpotMap;
+    private static long id = 1;
 
     public ParkingSpotRepository() {
         this.parkingSpotMap = new HashMap<>();
     }
 
     public ParkingSpot save(ParkingSpot parkingSpot){
-        parkingSpot.setId(counter++);
+        parkingSpot.setId(id++);
         parkingSpotMap.put(parkingSpot.getId(), parkingSpot);
         return parkingSpotMap.get(parkingSpot.getId());
     }
 
-    public ParkingSpot findById(int parkingSpotId){
+    public ParkingSpot findById(long parkingSpotId){
         if(parkingSpotMap.containsKey(parkingSpotId)){
             return parkingSpotMap.get(parkingSpotId);
         } else {
@@ -27,7 +27,7 @@ public class ParkingSpotRepository {
         }
     }
 
-    public ParkingSpot update(int parkingSpotId, ParkingSpot newParkingSpot){
+    public ParkingSpot update(long parkingSpotId, ParkingSpot newParkingSpot){
         if(parkingSpotMap.containsKey(parkingSpotId)){
             return parkingSpotMap.put(parkingSpotId, newParkingSpot);
         } else {
@@ -35,7 +35,7 @@ public class ParkingSpotRepository {
         }
     }
 
-    public void delete(int parkingSpotId){
+    public void delete(long parkingSpotId){
         if(parkingSpotMap.containsKey(parkingSpotId)){
             parkingSpotMap.remove(parkingSpotId);
         } else {

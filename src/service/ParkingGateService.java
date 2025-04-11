@@ -15,7 +15,7 @@ public class ParkingGateService {
         this.parkingAttendantRepo = parkingAttendantRepo;
     }
 
-    public ParkingGate create(String gateName, ParkingGateType gateType, int attendantId) {
+    public ParkingGate create(String gateName, ParkingGateType gateType, long attendantId) {
         ParkingAttendant attendant = parkingAttendantRepo.findById(attendantId);
         ParkingGate parkingGate = new ParkingGate();
         parkingGate.setGateName(gateName);

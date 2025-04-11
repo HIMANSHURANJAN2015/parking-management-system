@@ -5,26 +5,26 @@ import model.constant.ParkingSpotType;
 import model.constant.VehicleType;
 
 public class ParkingSpot {
-    private int id;
-    private int parkingSlotNumber;
+    private long id;
+    private int parkingSpotNumber;
     private ParkingSpotStatus parkingSpotStatus;
     private ParkingSpotType parkingSpotType;
     private VehicleType vehicleType;
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 
-    public int getParkingSlotNumber() {
-        return parkingSlotNumber;
+    public int getParkingSpotNumber() {
+        return parkingSpotNumber;
     }
 
-    public void setParkingSlotNumber(int parkingSlotNumber) {
-        this.parkingSlotNumber = parkingSlotNumber;
+    public void setParkingSpotNumber(int parkingSlotNumber) {
+        this.parkingSpotNumber = parkingSlotNumber;
     }
 
     public ParkingSpotStatus getParkingSpotStatus() {

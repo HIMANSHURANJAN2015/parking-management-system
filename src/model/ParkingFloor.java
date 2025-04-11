@@ -3,15 +3,15 @@ package model;
 import java.util.List;
 
 public class ParkingFloor {
-    private int id;
+    private long id;
     private int floorNumber;
     private List<ParkingSpot> parkingSpots;
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 

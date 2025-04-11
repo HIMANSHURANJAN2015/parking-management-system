@@ -6,20 +6,20 @@ import model.ParkingAttendant;
 import java.util.HashMap;
 
 public class ParkingAttendantRepository {
-    private HashMap<Integer, ParkingAttendant> parkingAttendantMap;
-    private static int counter = 1;
+    private HashMap<Long, ParkingAttendant> parkingAttendantMap;
+    private static long id = 1;
 
     public ParkingAttendantRepository() {
         this.parkingAttendantMap = new HashMap<>();
     }
 
     public ParkingAttendant save(ParkingAttendant parkingAttendant){
-        parkingAttendant.setId(counter++);
+        parkingAttendant.setId(id++);
         parkingAttendantMap.put(parkingAttendant.getId(), parkingAttendant);
         return parkingAttendantMap.get(parkingAttendant.getId());
     }
 
-    public ParkingAttendant findById(int parkingAttendantId){
+    public ParkingAttendant findById(long parkingAttendantId){
         if(parkingAttendantMap.containsKey(parkingAttendantId)){
             return parkingAttendantMap.get(parkingAttendantId);
         } else {
@@ -27,7 +27,7 @@ public class ParkingAttendantRepository {
         }
     }
 
-    public ParkingAttendant update(int parkingAttendantId, ParkingAttendant newParkingAttendant){
+    public ParkingAttendant update(long parkingAttendantId, ParkingAttendant newParkingAttendant){
         if(parkingAttendantMap.containsKey(parkingAttendantId)){
             return parkingAttendantMap.put(parkingAttendantId, newParkingAttendant);
         } else {
@@ -35,7 +35,7 @@ public class ParkingAttendantRepository {
         }
     }
 
-    public void delete(int parkingAttendantId){
+    public void delete(long parkingAttendantId){
         if(parkingAttendantMap.containsKey(parkingAttendantId)){
             parkingAttendantMap.remove(parkingAttendantId);
         } else {

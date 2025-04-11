@@ -3,17 +3,17 @@ package model;
 import java.util.Date;
 
 public class Invoice {
-    private int id;
+    private long id;
     private Date exitTime;
     private ParkingTicket parkingTicket;
     private double amount;
     private Payment payment;
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 

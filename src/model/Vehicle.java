@@ -3,15 +3,15 @@ package model;
 import model.constant.VehicleType;
 
 public class Vehicle {
-    private int id;
+    private long id;
     private String number;
     private VehicleType vehicleType;
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 

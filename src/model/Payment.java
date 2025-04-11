@@ -4,18 +4,18 @@ import model.constant.PaymentStatus;
 import model.constant.PaymentType;
 
 public class Payment {
-    private int id;
+    private long id;
     private double amount;
     private String referenceNumber; // transaction number -> generated from payment source
     private PaymentStatus paymentStatus;
     private PaymentType paymentType;
     private int total;
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 

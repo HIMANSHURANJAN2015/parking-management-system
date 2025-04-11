@@ -3,7 +3,7 @@ package model;
 import java.util.List;
 
 public class ParkingLot {
-    private int id;
+    private long id;
     private String name;
     private String address;
     private List<ParkingFloor> parkingFloors;
@@ -12,11 +12,11 @@ public class ParkingLot {
     private int occupiedSize; // ticket -> ++  , bill -> --
     // occupancy -> occupied/total * 100
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 

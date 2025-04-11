@@ -3,18 +3,18 @@ package model;
 import java.util.Date;
 
 public class ParkingTicket {
-    private int id;
+    private long id;
     private ParkingSpot parkingSpot;
     private Date entryTime;
     private Vehicle vehicle;
     private ParkingGate entryGate;
     private ParkingAttendant parkingAttendant;
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 

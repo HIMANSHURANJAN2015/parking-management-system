@@ -69,9 +69,9 @@ public class ParkingLotController {
                 List<ParkingSpot> parkingSpotList = new ArrayList<>();
                 for(int j=1; j<=numberOfSlots; j++) {
                     int spotNumber = 100*floorNumber + j;
-                    System.out.println("Enter spot type of spot number : "+(j+1)); //j
+                    System.out.println("Enter spot type of spot number : "+(j));
                     ParkingSpotType type = ParkingSpotType.valueOf(sc.nextLine());
-                    System.out.println("Enter vehicle type of spot number : "+(j+1)); //j
+                    System.out.println("Enter vehicle type of spot number : "+(j));
                     VehicleType vehicleType = VehicleType.valueOf(sc.nextLine());
                     parkingSpotList.add(parkingSpotService.create(spotNumber, type, vehicleType));
                 }
