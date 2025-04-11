@@ -10,6 +10,7 @@ public class ParkingSpot {
     private ParkingSpotStatus parkingSpotStatus;
     private ParkingSpotType parkingSpotType;
     private VehicleType vehicleType;
+    private Vehicle parkedVehicle;
 
     public long getId() {
         return id;
@@ -49,5 +50,13 @@ public class ParkingSpot {
 
     public void setVehicleType(VehicleType vehicleType) {
         this.vehicleType = vehicleType;
+    }
+
+    public Vehicle getParkedVehicle() {
+        return parkedVehicle;
+    }
+
+    public void setParkedVehicle(Vehicle parkedVehicle) {
+        this.parkedVehicle = parkedVehicle;
     }
 }
