@@ -26,4 +26,11 @@ public class ParkingSpotService {
         parkingSpot.setVehicleType(vehicleType);
         return parkingSpotRepository.save(parkingSpot);
     }
+
+    public ParkingSpot vehicleCheckout(ParkingSpot spot) {
+        spot.setParkedVehicle(null);
+        spot.setParkingSpotStatus(ParkingSpotStatus.AVAILABLE);
+        return parkingSpotRepository.update(spot.getId(), spot);
+    }
+
 }

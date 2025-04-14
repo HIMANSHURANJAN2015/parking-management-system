@@ -1,6 +1,9 @@
 package model;
 
 import java.util.Date;
+import java.util.List;
+
+import model.constant.AdditionalService;
 
 public class ParkingTicket {
     private long id;
@@ -9,6 +12,8 @@ public class ParkingTicket {
     private Vehicle vehicle;
     private ParkingGate entryGate;
     private ParkingAttendant parkingAttendant;
+    private List<AdditionalService> additionalServices;
+
 
     public long getId() {
         return id;
@@ -56,5 +61,13 @@ public class ParkingTicket {
 
     public void setParkingAttendant(ParkingAttendant parkingAttendant) {
         this.parkingAttendant = parkingAttendant;
+    }
+
+    public List<AdditionalService> getAdditionalServices() {
+        return additionalServices;
+    }
+
+    public void setAdditionalServices(List<AdditionalService> additionalServices) {
+        this.additionalServices = additionalServices;
     }
 }

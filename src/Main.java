@@ -1,8 +1,10 @@
+import controller.InvoiceController;
 import controller.ParkingAttendantController;
 import controller.ParkingLotController;
 import controller.ParkingTicketController;
 import repository.*;
 import service.*;
+import service.strategy.pricing.PricingStrategyFactory;
 import service.strategy.spotassignment.NearestSpotAssignmentStrategy;
 import util.ParkingLotUtils;
 import util.InputUtils;
@@ -30,9 +32,15 @@ public class Main {
                 parkingSpotService, parkingGateService, parkingAttendantController);
 
         //Creating ParkingTicket Controller
-        ParkingTicketService parkingTicketService = new ParkingTicketService(new ParkingTicketRepository(), parkingGateRepository,
+        ParkingTicketRepository parkingTicketRepository = new ParkingTicketRepository();
+        ParkingTicketService parkingTicketService = new ParkingTicketService(parkingTicketRepository, parkingGateRepository,
                 parkingLotRepository, new VehicleRepository(), new NearestSpotAssignmentStrategy());
         ParkingTicketController parkingTicketController = new ParkingTicketController(parkingTicketService);
+
+        //Creating Invoice Controller
+        InvoiceService invoiceService = new InvoiceService(new InvoiceRepository(), parkingTicketRepository,
+                parkingGateRepository, new PricingStrategyFactory(new SlabRepository()));
+        InvoiceController invoiceController = new InvoiceController(invoiceService, parkingSpotService);
 
         Scanner sc = new Scanner(System.in);
         int choice = 1;
@@ -44,6 +52,7 @@ public class Main {
                         "3 = Print a parking Lot \n " +
                         "4 = Get Parking lot capacity \n " +
                         "5 = Generate Parking ticket \n " +
+                        "6 = Generate Invoice \n " +
                         "0 = Exit");
                 switch (choice) {
                     case 1:
@@ -65,6 +74,9 @@ public class Main {
                         break;
                     case 5:
                         parkingTicketController.generateTicket();
+                        break;
+                    case 6:
+                        invoiceController.createInvoice();
                         break;
                     case 0:
                         break;

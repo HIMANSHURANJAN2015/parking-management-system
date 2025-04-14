@@ -1,9 +1,6 @@
 package util;
 
-import model.ParkingFloor;
-import model.ParkingLot;
-import model.ParkingSpot;
-import model.ParkingTicket;
+import model.*;
 import model.constant.ParkingSpotStatus;
 
 import java.util.List;
@@ -58,6 +55,29 @@ public class ParkingLotUtils {
         System.out.printf("|   %-74s   |\n", "Vehicle number: " + ticket.getVehicle().getNumber());
         System.out.printf("|   %-74s   |\n", "Gate number: " + ticket.getEntryGate().getGateName());
         System.out.printf("|   %-74s   |\n", "Parking Attendant Name: " + ticket.getParkingAttendant().getName());
+        if (ticket.getAdditionalServices() != null) {
+            System.out.printf("|   %-74s   |\n", "Additional Services Opted: " + ticket.getAdditionalServices().toString());
+        } else {
+            System.out.println("No additional services opted.");
+        }
+        System.out.println(border); // Bottom border
+    }
+
+    public static void print(Invoice invoice) {
+        String border = "|------------------------------------------------------------------------------|";
+        String emptyLine = "|                                                                              |";
+
+        System.out.println(border); // Top border
+        System.out.println(emptyLine);
+        System.out.println("|   Invoice successfully generated. Here are the details:                        |");
+        System.out.println(emptyLine);
+        System.out.println(border); // Divider border
+        System.out.printf("|   %-74s   |\n", "Invoice id: " + invoice.getId());
+        System.out.printf("|   %-74s   |\n", "Ticket id: " + invoice.getParkingTicket().getId());
+        System.out.printf("|   %-74s   |\n", "Exit Gate number: " + invoice.getExitGate().getGateName());
+        System.out.printf("|   %-74s   |\n", "Parking Attendant Name: " + invoice.getAttendant().getName());
+        System.out.printf("|   %-74s   |\n", "Exit time: " + invoice.getExitTime());
+        System.out.printf("|   %-74s   |\n", "Final Payable amount: " + invoice.getAmount());
         System.out.println(border); // Bottom border
     }
 }

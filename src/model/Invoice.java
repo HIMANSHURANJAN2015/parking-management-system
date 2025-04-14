@@ -6,8 +6,11 @@ public class Invoice {
     private long id;
     private Date exitTime;
     private ParkingTicket parkingTicket;
+    private ParkingGate exitGate;
+    private ParkingAttendant attendant;
     private double amount;
     private Payment payment;
+
 
     public long getId() {
         return id;
@@ -31,6 +34,22 @@ public class Invoice {
 
     public void setParkingTicket(ParkingTicket parkingTicket) {
         this.parkingTicket = parkingTicket;
+    }
+
+    public ParkingGate getExitGate() {
+        return exitGate;
+    }
+
+    public void setExitGate(ParkingGate exitGate) {
+        this.exitGate = exitGate;
+    }
+
+    public ParkingAttendant getAttendant() {
+        return attendant;
+    }
+
+    public void setAttendant(ParkingAttendant attendant) {
+        this.attendant = attendant;
     }
 
     public double getAmount() {

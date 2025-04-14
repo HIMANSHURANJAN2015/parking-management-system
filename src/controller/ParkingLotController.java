@@ -172,5 +172,4 @@ public class ParkingLotController {
             System.out.println("Oops!! Something went wrong. Error:"+e.getMessage());
         }
     }
-
 }
