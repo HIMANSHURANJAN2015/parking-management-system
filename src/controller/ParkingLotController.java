@@ -151,7 +151,7 @@ public class ParkingLotController {
 
         //Taking Vehicle Type as input
         List<VehicleType> vehicleTypes = new ArrayList<>();;
-        Long numberOfVehicleTypes = InputUtils.getValidLong(sc, "Enter number of vehicle types whose result you want to see. Enter 0 if want to see all parking floor");
+        Long numberOfVehicleTypes = InputUtils.getValidLong(sc, "Enter number of vehicle types whose result you want to see. Enter 0 if want to see for all vehicle types");
         if(numberOfVehicleTypes >0) {
             for(int i = 1; i <= numberOfVehicleTypes; i++) {
                 VehicleType type = InputUtils.getValidVehicleType(sc, "Enter vehicle type :"+i);

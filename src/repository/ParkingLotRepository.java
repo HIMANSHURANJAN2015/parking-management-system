@@ -27,24 +27,17 @@ public class ParkingLotRepository {
         return Optional.ofNullable(this.parkingLotMap.get(id));
     }
 
-    public Optional<ParkingLot> finByGateId(long gateId){
+    public Optional<ParkingLot> findByGateId(long gateId){
         for(Long key: parkingLotMap.keySet()) {
             ParkingLot parkingLot = this.parkingLotMap.get(key);
             List<ParkingGate> gates = parkingLot.getParkingGates();
-            if(isGateIdPresent(gates, gateId)) {
-                return Optional.of(parkingLot);
+            for(ParkingGate gate: gates) {
+                if(gate.getId() == gateId) {
+                    return Optional.of(parkingLot);
+                }
             }
         }
         return Optional.empty();
-    }
-
-    private boolean isGateIdPresent(List<ParkingGate> gates, long gateId) {
-        for(ParkingGate gate: gates) {
-            if(gate.getId() == gateId) {
-                return true;
-            }
-        }
-        return false;
     }
 
     public ParkingLot update(long parkingLotId, ParkingLot newParkingLot){

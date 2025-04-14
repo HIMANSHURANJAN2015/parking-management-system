@@ -20,7 +20,7 @@ public class ParkingGate {
         return gateName;
     }
 
-    public void setGateName(String gateNumber) {
+    public void setGateName(String gateName) {
         this.gateName = gateName;
     }
 

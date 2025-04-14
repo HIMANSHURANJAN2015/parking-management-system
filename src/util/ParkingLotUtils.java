@@ -3,6 +3,7 @@ package util;
 import model.ParkingFloor;
 import model.ParkingLot;
 import model.ParkingSpot;
+import model.ParkingTicket;
 import model.constant.ParkingSpotStatus;
 
 import java.util.List;
@@ -34,11 +35,29 @@ public class ParkingLotUtils {
         if(parkingSpot.getParkingSpotStatus().equals(ParkingSpotStatus.AVAILABLE)){
             System.out.print("  |______________|  ");
         } else if(parkingSpot.getParkingSpotStatus().equals(ParkingSpotStatus.OCCUPIED)){
-            System.out.print(parkingSpot.getParkedVehicle().getNumber());
+            System.out.printf("  |   %-8s   |  ", parkingSpot.getParkedVehicle().getNumber());
         } else {
-            System.out.print("   |OUT-OF-ORDER|   ");
+            System.out.print("  |OUT-OF-ORDER|  ");
         }
     }
 // ParkingLotService.displayParkingLot() -> ParkingLotUtils.print()
 // displayParkingLot -> auth check, all empty check
+
+    public static void print(ParkingTicket ticket) {
+        String border = "|------------------------------------------------------------------------------|";
+        String emptyLine = "|                                                                              |";
+
+        System.out.println(border); // Top border
+        System.out.println(emptyLine);
+        System.out.println("|   Ticket successfully generated. Here are the details                        |");
+        System.out.println(emptyLine);
+        System.out.println(border); // Divider border
+        System.out.printf("|   %-74s   |\n", "Ticket id: " + ticket.getId());
+        System.out.printf("|   %-74s   |\n", "Parking spot: " + ticket.getParkingSpot().getParkingSpotNumber());
+        System.out.printf("|   %-74s   |\n", "Entry time: " + ticket.getEntryTime());
+        System.out.printf("|   %-74s   |\n", "Vehicle number: " + ticket.getVehicle().getNumber());
+        System.out.printf("|   %-74s   |\n", "Gate number: " + ticket.getEntryGate().getGateName());
+        System.out.printf("|   %-74s   |\n", "Parking Attendant Name: " + ticket.getParkingAttendant().getName());
+        System.out.println(border); // Bottom border
+    }
 }

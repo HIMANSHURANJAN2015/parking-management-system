@@ -7,6 +7,7 @@ import model.constant.ParkingGateType;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Optional;
 
 public class ParkingGateRepository {
     private Map<Long, ParkingGate> parkingGateMap;
@@ -22,11 +23,7 @@ public class ParkingGateRepository {
         return parkingGate;
     }
 
-    public ParkingGate findById(long parkingGateId){
-        if(parkingGateMap.containsKey(parkingGateId)){
-            return parkingGateMap.get(parkingGateId);
-        } else {
-            throw new ParkingGateDoesNotExistException("Parking Gate Does not Exist");
-        }
+    public Optional<ParkingGate> findById(long parkingGateId){
+        return Optional.ofNullable(parkingGateMap.get(parkingGateId));
     }
 }

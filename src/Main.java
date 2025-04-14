@@ -1,7 +1,9 @@
 import controller.ParkingAttendantController;
 import controller.ParkingLotController;
+import controller.ParkingTicketController;
 import repository.*;
 import service.*;
+import service.strategy.spotassignment.NearestSpotAssignmentStrategy;
 import util.ParkingLotUtils;
 import util.InputUtils;
 
@@ -14,15 +16,23 @@ public class Main {
     public static void main(String[] args) {
         System.out.println("Welcome to Advaitya Parking Management System");
 
+        //Creating ParkingLot Controller
         ParkingSpotService  parkingSpotService = new ParkingSpotService(new ParkingSpotRepository());
         ParkingFloorService parkingFloorService = new ParkingFloorService(new ParkingFloorRepository());
-        ParkingLotService parkingLotService = new ParkingLotService(new ParkingLotRepository(), new ParkingLotUtils());
+        ParkingLotRepository parkingLotRepository = new ParkingLotRepository();
+        ParkingLotService parkingLotService = new ParkingLotService(parkingLotRepository, new ParkingLotUtils());
         ParkingAttendantRepository parkingAttendantRepository = new ParkingAttendantRepository();
-        ParkingGateService parkingGateService = new ParkingGateService(new ParkingGateRepository(), parkingAttendantRepository);
+        ParkingGateRepository parkingGateRepository = new ParkingGateRepository();
+        ParkingGateService parkingGateService = new ParkingGateService(parkingGateRepository, parkingAttendantRepository);
         ParkingAttendantService parkingAttendantService = new ParkingAttendantService(parkingAttendantRepository);
         ParkingAttendantController parkingAttendantController = new ParkingAttendantController(parkingAttendantService);
         ParkingLotController parkingLotController = new ParkingLotController(parkingLotService, parkingFloorService,
                 parkingSpotService, parkingGateService, parkingAttendantController);
+
+        //Creating ParkingTicket Controller
+        ParkingTicketService parkingTicketService = new ParkingTicketService(new ParkingTicketRepository(), parkingGateRepository,
+                parkingLotRepository, new VehicleRepository(), new NearestSpotAssignmentStrategy());
+        ParkingTicketController parkingTicketController = new ParkingTicketController(parkingTicketService);
 
         Scanner sc = new Scanner(System.in);
         int choice = 1;
@@ -33,6 +43,7 @@ public class Main {
                         "2 = Auto-register a new Parking Lot(with dummy data) \n " +
                         "3 = Print a parking Lot \n " +
                         "4 = Get Parking lot capacity \n " +
+                        "5 = Generate Parking ticket \n " +
                         "0 = Exit");
                 switch (choice) {
                     case 1:
@@ -51,6 +62,9 @@ public class Main {
                         break;
                     case 4:
                         parkingLotController.getParkingLotCapacity();
+                        break;
+                    case 5:
+                        parkingTicketController.generateTicket();
                         break;
                     case 0:
                         break;
