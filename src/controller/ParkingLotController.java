@@ -1,5 +1,6 @@
 package controller;
 
+import exception.ParkingLotDoesNotExistException;
 import model.ParkingFloor;
 import model.ParkingGate;
 import model.ParkingLot;
@@ -12,6 +13,7 @@ import util.InputUtils;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.Scanner;
 
 public class ParkingLotController {
@@ -46,11 +48,15 @@ public class ParkingLotController {
         this.sc = new Scanner(System.in);
     }
 
-    public ParkingLot create(){
+    public void create(){
          /*
         As its console based application, so  create() method in the controller doesn't need
         parameters—it can simply ask for user inputs via the console, validate them, and pass
         the data (either as individual parameters or encapsulated in a model/DTO) to the service layer.
+
+        Further, because its console based, so I am not making request and giving response via dtos. But at scaler assignment
+        which were based on API, I used dto
+
           */
         ParkingLot parkingLot = null;
         //taking input from user and validating them
@@ -114,9 +120,8 @@ public class ParkingLotController {
             System.out.println("New parking lot registered successfully. Kindly note down the id: "+parkingLot.getId());
             parkingLotService.printParkingLot(parkingLot.getId());
         } catch(Exception e) {
-            System.out.println("OOPS!! Parking Lot not created. Error:"+e.getMessage());
+            System.out.println("OOPS!! Parking Lot not created. Error:" + e.getMessage());
         }
-        return parkingLot;
     }
 
     public void print(){
@@ -126,6 +131,45 @@ public class ParkingLotController {
 
         } catch(Exception e) {
             System.out.println("OOPS!! Unable to display parking lot. Error:"+e.getMessage());
+        }
+    }
+
+    public void getParkingLotCapacity() {
+        //Taking input from user. (Unlike Scaler assignment since its not request based and is console based. so not using dtos)
+        //Taking Parking lot id as input
+        Long parkingLotId = InputUtils.getValidLong(sc, "Emter parking lot id to see the capacity");
+
+        //Taking Parking floors  id as input
+        List<Long> parkingFloorIds = new ArrayList<Long>();;
+        Long numberOfFloors = InputUtils.getValidLong(sc, "Enter number of parking floors whose result you want to see. Enter 0 if want to see all parking floor");
+        if(numberOfFloors >0) {
+            for(int floorNumber = 1; floorNumber <= numberOfFloors; floorNumber++) {
+                long floorId = InputUtils.getValidLong(sc, "Enter Floor number "+floorNumber);
+                parkingFloorIds.add(floorId);
+            }
+        }
+
+        //Taking Vehicle Type as input
+        List<VehicleType> vehicleTypes = new ArrayList<>();;
+        Long numberOfVehicleTypes = InputUtils.getValidLong(sc, "Enter number of vehicle types whose result you want to see. Enter 0 if want to see all parking floor");
+        if(numberOfVehicleTypes >0) {
+            for(int i = 1; i <= numberOfVehicleTypes; i++) {
+                VehicleType type = InputUtils.getValidVehicleType(sc, "Enter vehicle type :"+i);
+                vehicleTypes.add(type);
+            }
+        }
+
+        //Calling service
+        try {
+            Map<ParkingFloor, Map<String, Integer>> capacityMap = this.parkingLotService.getParkingLotCapacity(parkingLotId, parkingFloorIds, vehicleTypes);
+            //System.out.println("Here's the current state of parking lot with id:"+parkingLotId+" \n"+ capacityMap.toString());
+            System.out.println("Here's the current state of parking lot with id:"+parkingLotId);
+            for(ParkingFloor floor: capacityMap.keySet()) {
+                Map<String, Integer> floorCapacity = capacityMap.get(floor);
+                System.out.println("On floor: "+ floor.getFloorNumber()+" floor capacity ="+floorCapacity.toString());
+            }
+        } catch(ParkingLotDoesNotExistException e) {
+            System.out.println("Oops!! Something went wrong. Error:"+e.getMessage());
         }
     }
 

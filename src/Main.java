@@ -32,6 +32,7 @@ public class Main {
                         "1 = Register a new Parking Lot(with all details) \n " +
                         "2 = Auto-register a new Parking Lot(with dummy data) \n " +
                         "3 = Print a parking Lot \n " +
+                        "4 = Get Parking lot capacity \n " +
                         "0 = Exit");
                 switch (choice) {
                     case 1:
@@ -47,6 +48,9 @@ public class Main {
                         break;
                     case 3:
                         parkingLotController.print();
+                        break;
+                    case 4:
+                        parkingLotController.getParkingLotCapacity();
                         break;
                     case 0:
                         break;

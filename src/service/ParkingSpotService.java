@@ -21,7 +21,7 @@ public class ParkingSpotService {
                               VehicleType vehicleType){
         ParkingSpot parkingSpot = new ParkingSpot();
         parkingSpot.setParkingSpotNumber(slotNumber);
-        parkingSpot.setParkingSpotStatus(ParkingSpotStatus.FREE);
+        parkingSpot.setParkingSpotStatus(ParkingSpotStatus.AVAILABLE);
         parkingSpot.setParkingSpotType(parkingSpotType);
         parkingSpot.setVehicleType(vehicleType);
         return parkingSpotRepository.save(parkingSpot);

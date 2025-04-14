@@ -2,6 +2,6 @@ package model.constant;
 
 public enum ParkingSpotStatus {
     OCCUPIED,
-    FREE,
+    AVAILABLE,
     OUT_OF_ORDER
 }

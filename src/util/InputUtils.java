@@ -20,6 +20,19 @@ public class InputUtils {
         }
     }
 
+    // Method to validate and collect an long input
+    public static long getValidLong(Scanner sc, String prompt) {
+        while (true) {
+            System.out.println(prompt);
+            String input = sc.nextLine();
+            try {
+                return Long.parseLong(input); // Attempt to parse as integer
+            } catch (NumberFormatException e) {
+                System.out.println("Invalid input! Please enter a valid long.");
+            }
+        }
+    }
+
     // Method to validate and collect a string input
     public static String getValidString(Scanner sc, String prompt) {
         while (true) {

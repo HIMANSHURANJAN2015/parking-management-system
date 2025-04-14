@@ -1,11 +1,14 @@
 package model;
 
+import model.constant.ParkingFloorStatus;
+
 import java.util.List;
 
 public class ParkingFloor {
     private long id;
     private int floorNumber;
     private List<ParkingSpot> parkingSpots;
+    private ParkingFloorStatus floorStatus;
 
     public long getId() {
         return id;
@@ -29,5 +32,13 @@ public class ParkingFloor {
 
     public void setParkingSpots(List<ParkingSpot> parkingSpots) {
         this.parkingSpots = parkingSpots;
+    }
+
+    public ParkingFloorStatus getFloorStatus() {
+        return floorStatus;
+    }
+
+    public void setFloorStatus(ParkingFloorStatus floorStatus) {
+        this.floorStatus = floorStatus;
     }
 }

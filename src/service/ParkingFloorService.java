@@ -2,6 +2,7 @@ package service;
 
 import model.ParkingFloor;
 import model.ParkingSpot;
+import model.constant.ParkingFloorStatus;
 import model.constant.ParkingSpotType;
 import model.constant.VehicleType;
 import repository.ParkingFloorRepository;
@@ -22,6 +23,7 @@ public class ParkingFloorService {
         ParkingFloor parkingFloor = new ParkingFloor();
         parkingFloor.setFloorNumber(floorNumber);
         parkingFloor.setParkingSpots(parkingSpots);
+        parkingFloor.setFloorStatus(ParkingFloorStatus.OPERATIONAL);
         return parkingFloorRepository.save(parkingFloor);
     }
 }

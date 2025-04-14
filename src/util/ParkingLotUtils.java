@@ -31,7 +31,7 @@ public class ParkingLotUtils {
     }
 
     public static void print(ParkingSpot parkingSpot){
-        if(parkingSpot.getParkingSpotStatus().equals(ParkingSpotStatus.FREE)){
+        if(parkingSpot.getParkingSpotStatus().equals(ParkingSpotStatus.AVAILABLE)){
             System.out.print("  |______________|  ");
         } else if(parkingSpot.getParkingSpotStatus().equals(ParkingSpotStatus.OCCUPIED)){
             System.out.print(parkingSpot.getParkedVehicle().getNumber());

@@ -2,8 +2,12 @@ package repository;
 
 import exception.ParkingLotDoesNotExistException;
 import model.ParkingLot;
+import model.ParkingGate;
 
 import java.util.HashMap;
+import java.util.Optional;
+import java.util.List;
+
 //TODO : make all repositories singleton -> repository or DAO[Data Access Object] are the same thing
 public class ParkingLotRepository {
     private HashMap<Long, ParkingLot> parkingLotMap;
@@ -19,12 +23,28 @@ public class ParkingLotRepository {
         return parkingLotMap.get(parkingLot.getId());
     }
 
-    public ParkingLot findById(long parkingLotId){
-        if(parkingLotMap.containsKey(parkingLotId)){
-            return parkingLotMap.get(parkingLotId);
-        } else {
-            throw new ParkingLotDoesNotExistException("Parking Lot Does not Exist");
+    public Optional<ParkingLot> findById(long id){
+        return Optional.ofNullable(this.parkingLotMap.get(id));
+    }
+
+    public Optional<ParkingLot> finByGateId(long gateId){
+        for(Long key: parkingLotMap.keySet()) {
+            ParkingLot parkingLot = this.parkingLotMap.get(key);
+            List<ParkingGate> gates = parkingLot.getParkingGates();
+            if(isGateIdPresent(gates, gateId)) {
+                return Optional.of(parkingLot);
+            }
         }
+        return Optional.empty();
+    }
+
+    private boolean isGateIdPresent(List<ParkingGate> gates, long gateId) {
+        for(ParkingGate gate: gates) {
+            if(gate.getId() == gateId) {
+                return true;
+            }
+        }
+        return false;
     }
 
     public ParkingLot update(long parkingLotId, ParkingLot newParkingLot){
